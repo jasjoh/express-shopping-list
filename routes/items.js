@@ -12,4 +12,21 @@
     return res.json(items);
   });
 
+
+
+	router.post("", function(req, res) {
+		const newItem = {
+			"name": req.body.name,
+			"price": req.body.price
+		};
+
+		items.items.push(newItem);
+		const resp = {"added": newItem};
+		return res.json(resp);
+	});
+
+
+
+
+
 	module.exports = router;
