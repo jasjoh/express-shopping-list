@@ -1,7 +1,11 @@
+"use strict;"
 /** Express app boilerplate. */
 
 const express = require("express");
 const app = express();
+// const { items } = require("./fakeDb");
+// const items = require("./fakeDb");
+const itemsRoutes = require("./routes/items")
 
 // useful error class to throw
 const { NotFoundError } = require("./expressError");
@@ -12,11 +16,8 @@ app.use(express.json());
 // process traditional form data => req.body
 app.use(express.urlencoded());
 
-
-
 /** ROUTES GO HERE. */
-
-
+app.use("/items", itemsRoutes);
 
 /** 404 handler: matches unmatched routes. */
 app.use(function (req, res) {
