@@ -38,10 +38,33 @@
 		console.log("item", item);
 
 		return res.json(item);
-	})
+	});
 
+	/**
+	 * Update the specified item with the provided data.
+	 */
+	router.patch("/:name", function(req, res) {
+		const name = req.params.name;
+		const data = req.body;
+		const idxOfItem = items.items.findIndex(item => item.name === name);
 
+		for (let key in data) {
+			const value = data[key];
+			items.items[idxOfItem][key] = value;
+		}
 
+		return res.json(items.items[idxOfItem]);
+	});
 
+	/**
+	 *
+	 */
+	router.delete("/:name", function(req, res) {
+		const name = req.params.name;
+		const idxOfItem = items.items.findIndex(item => item.name === name);
+		items.items.splice(idxOfItem, 1);
+
+		return res.json({"message": "Deleted"})
+	});
 
 	module.exports = router;
