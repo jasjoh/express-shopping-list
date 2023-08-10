@@ -13,7 +13,10 @@
   });
 
 
-
+	/**  Creates new item and returns it
+	 *
+	 *  expected format: {name, price}
+	 */
 	router.post("", function(req, res) {
 		const newItem = {
 			"name": req.body.name,
@@ -24,6 +27,18 @@
 		const resp = {"added": newItem};
 		return res.json(resp);
 	});
+
+
+	/** Returns a single item */
+	router.get("/:name", function(req,res) {
+		const name = req.params.name
+		console.log("name", name)
+
+		const item = items.items.find(item => item.name === name);
+		console.log("item", item);
+
+		return res.json(item);
+	})
 
 
 
